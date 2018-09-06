@@ -1,0 +1,33 @@
+.ScheduleContainer {
+    display: grid;
+    margin: 8px;
+    grid-template-columns: 3em repeat( 8, 8em );
+    grid-template-rows: repeat( 24, 60px );
+    grid-row-gap: 1px;
+    grid-column-gap: 1em;
+}
+
+.TimeSlot {
+    padding: 0px 4px 28px 0px;
+    vertical-align: text-top;
+    grid-column: 1;
+}
+
+.ActivityDiv {
+    position: relative;
+    /* border: 1px solid black; */
+}
+
+.Activity {
+    display: inline-block;
+    position: absolute;
+    padding: 2px 4px 0px 4px;
+    width: 100%;
+    background-color: #BBBBFF;
+    border-radius: 4px;
+    transition-duration: 0.1s;
+}
+
+.Activity:hover {
+    background-color: #9999FF;
+}
