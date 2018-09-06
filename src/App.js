@@ -17,18 +17,37 @@ let ItemClickedEv = (e, id) => {
   e.stopPropagation()
 }
 
-let ActivityCreated = (e) => {
-  let time = e.clientY / 60
-  alert(`Activity Created for ${time}!`)
+// Converts Mouse Y coordinate into time marking
+let MouseYToTime = (MouseY) => {
+  let TopMargin = 10
+  let Hour = Math.floor((MouseY - TopMargin) / 60)
+  let Minute = (MouseY - TopMargin) % 60
+
+  return `${Hour}:${Minute.toString().padStart(2, '0')}`
 }
 
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.ActivityCreated = this.ActivityCreated.bind(this)
+  }
+
+  ActivityCreated (e) {
+    let time = MouseYToTime(e.pageY)
+    let endTime = MouseYToTime(e.pageY + 60)
+    // activities.push({ id: 6, Title: 'Untitled', StartTime: time, EndTime: endTime })
+
+    // console.log(activities)
+    // this.forceUpdate()
+  }
+
   render () {
     return (
       <div className='App'>
         <Schedule Activities={activities}
           TimeIncrement={60}
-          ContainerClicked={ActivityCreated}
+          ContainerClicked={this.ActivityCreated}
           ItemClicked={ItemClickedEv} />
       </div>
     )
