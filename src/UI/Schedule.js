@@ -35,11 +35,13 @@ class Schedule extends React.Component {
   }
 
   createTimeHeaders () {
-    // Get the amount of sub-divisions an hour should be split into (e.g: Every 10, 15, 30 minutes, etc)
-    let TimeSplits = Math.round(60 / this.props.TimeIncrement)
+    // Get the amount of sub-divisions an hour should be split into
+    // (e.g: Split hour into intervals of 10, 15, 30 minutes, etc)
+    let minuteInterval = Math.round(60 / this.props.TimeIncrement)
 
+    // Create a time-mark for each hour of the day with minute-interval markings in between each hour
     return [...Array(24).keys()].map(x =>
-      [...Array(TimeSplits).keys()].map(y =>
+      [...Array(minuteInterval).keys()].map(y =>
         <TimeHeader position={x + y + 1} time={`${x}:${(y * this.props.TimeIncrement).toString().padStart(2, '0')}`} />))
   }
 
