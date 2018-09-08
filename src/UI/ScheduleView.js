@@ -27,9 +27,9 @@ class ScheduleView extends React.Component {
     super(props)
 
     this.state = { ActivityClicked: null }
-    this.ItemClickedEv = this.EditActivityEv.bind(this)
-    this.ScheduleClickedEv = this.NewActivityEv.bind(this)
-    this.RedirectActivity = this.GoToActivityEntry.bind(this)
+    this.EditActivityEv = this.EditActivityEv.bind(this)
+    this.NewActivityEv = this.NewActivityEv.bind(this)
+    this.GoToActivityEntry = this.GoToActivityEntry.bind(this)
   }
 
   NewActivityInfo (id, StartTime, EndTime) {
