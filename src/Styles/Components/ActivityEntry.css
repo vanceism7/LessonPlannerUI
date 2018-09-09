@@ -1,0 +1,25 @@
+form {
+    margin: 8px;
+    padding: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+.group {
+    display: inline-block;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    /* margin: 4px; */
+}
+
+textarea {
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#desc {
+    display: inline-block;
+    width: 100%;
+    /* min-width: 12em; */
+}

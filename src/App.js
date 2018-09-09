@@ -4,10 +4,15 @@ import ScheduleView from './UI/ScheduleView'
 import ActivityEntry from './UI/ActvitiyEntry'
 
 const ActivityRedirector = (props) => {
+
+  let activity = {
+    id: props.location.id,
+    StartTime: props.location.StartTime,
+    EndTime: props.location.EndTime
+  }
+
   return <ActivityEntry
-    id={props.location.id}
-    StartTime={props.location.StartTime}
-    EndTime={props.location.EndTime}
+    Activity={activity}
   />
 }
 
