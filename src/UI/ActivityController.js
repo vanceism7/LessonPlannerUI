@@ -5,29 +5,34 @@ import ActivityEntry from './ActvitiyEntry'
 class ActivityController extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {
-      Redir: false,
-      Activities: props.Activities
-    }
 
+    this.state = { Redir: false }
     this.AddActivity = this.AddActivity.bind(this)
-    this.Abort = this.Abort.bind(this)
+    this.UpdateActivity = this.UpdateActivity.bind(this)
+    this.Close = this.Close.bind(this)
   }
 
   AddActivity (a) {
-    let newActvities = this.state.Activities
-    newActvities.push(a)
-
-    this.setState({
-      Redir: true,
-      Activities: newActvities
-    })
-
-    console.log(this.state.Activities)
+    this.props.Db.Add(a)
+    this.Close()
   }
 
-  Abort () {
+  UpdateActivity (a) {
+    this.props.Db.Update(a.id, a)
+    this.Close()
+  }
+
+  Close () {
     this.setState({ Redir: true })
+  }
+
+  NewActivity () {
+    return {
+      id: null,
+      Title: 'New Activity',
+      StartTime: this.props.location.StartTime,
+      EndTime: this.props.location.EndTime
+    }
   }
 
   render () {
@@ -35,19 +40,20 @@ class ActivityController extends React.Component {
       return <Redirect to='/' />
     }
 
-    let activity = {
-      id: this.props.location.id,
-      Title: 'Untitled',
-      StartTime: this.props.location.StartTime,
-      EndTime: this.props.location.EndTime
-    }
+    let event = this.UpdateActivity
+    let activity = this.props.Db.Find(this.props.location.id)
 
-    let event = this.AddActivity
+    console.log(activity)
+
+    if (activity == null) {
+      event = this.AddActivity
+      activity = this.NewActivity()
+    }
 
     return <ActivityEntry
       Activity={activity}
       SubmitActivity={event}
-      Abort={this.Abort}
+      Abort={this.Close}
     />
   }
 }
