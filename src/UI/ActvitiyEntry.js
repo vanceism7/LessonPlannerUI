@@ -42,7 +42,7 @@ class ActivityEntry extends React.Component {
         <h3>Activity Info</h3>
 
         <div className='group'>
-          <label for='Title'>Title:</label>
+          <label for='title'>Title:</label>
           <br />
           <input type='text' id='title'
             value={this.state.Title}

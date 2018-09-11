@@ -11,7 +11,7 @@ let MouseYToTime = (MouseY) => {
   return `${Hour}:${Minute.toString().padStart(2, '0')}`
 }
 
-class ScheduleView extends React.Component {
+class ScheduleController extends React.Component {
   constructor (props) {
     super(props)
 
@@ -50,6 +50,8 @@ class ScheduleView extends React.Component {
       return this.GoToActivityEntry()
     }
 
+    console.log(this.props.Activities)
+
     return (
       <div>
         <Schedule Activities={this.props.Activities}
@@ -61,4 +63,4 @@ class ScheduleView extends React.Component {
   }
 }
 
-export default ScheduleView
+export default ScheduleController
