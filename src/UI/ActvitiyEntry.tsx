@@ -1,8 +1,22 @@
-import React from 'react'
+import * as React from 'react'
 import '../Styles/Components/ActivityEntry.css'
 
-class ActivityEntry extends React.Component {
-  constructor (props) {
+interface IActivity {
+  id: number | null
+  Title: string
+  StartTime: string
+  EndTime: string
+  Description: string
+}
+
+interface IProps {
+  Activity: IActivity
+  SubmitActivity: (a: IActivity) => void
+  Abort: () => void
+}
+
+class ActivityEntry extends React.Component<IProps,IActivity> {
+  constructor (props: IProps) {
     super(props)
 
     this.state = {
@@ -21,28 +35,13 @@ class ActivityEntry extends React.Component {
     this.handleAbort = this.handleAbort.bind(this)
   }
 
-  TitleChanged (ev) { this.setState({ Title: ev.target.value }) }
-  StartTimeChanged (ev) { this.setState({ StartTime: ev.target.value }) }
-  EndTimeChanged (ev) { this.setState({ EndTime: ev.target.value }) }
-  DescriptionChanged (ev) { this.setState({ Description: ev.target.value }) }
-
-  handleSubmit (ev) {
-    this.props.SubmitActivity(this.state)
-    ev.preventDefault()
-  }
-
-  handleAbort (ev) {
-    this.props.Abort()
-    ev.preventDefault()
-  }
-
-  render () {
+  public render () {
     return <div>
       <form onSubmit={this.handleSubmit}>
         <h3>Activity Info</h3>
 
         <div className='group'>
-          <label for='title'>Title:</label>
+          <label htmlFor='title'>Title:</label>
           <br />
           <input type='text' id='title'
             value={this.state.Title}
@@ -50,7 +49,7 @@ class ActivityEntry extends React.Component {
         </div>
 
         <div className='group'>
-          <label for='start'>Start Time:</label>
+          <label htmlFor='start'>Start Time:</label>
           <br />
           <input type='text' id='start'
             value={this.state.StartTime}
@@ -58,7 +57,7 @@ class ActivityEntry extends React.Component {
         </div>
 
         <div className='group'>
-          <label for='end'>End Time:</label>
+          <label htmlFor='end'>End Time:</label>
           <br />
           <input type='text' id='end'
             value={this.state.EndTime}
@@ -67,9 +66,9 @@ class ActivityEntry extends React.Component {
         <br />
 
         <div className='group'>
-          <label for='desc'>Description:</label>
+          <label htmlFor='desc'>Description:</label>
           <br />
-          <textarea id='desc' cols='50' rows='6'
+          <textarea id='desc' cols={50} rows={6}
             value={this.state.Description}
             onChange={this.DescriptionChanged}
           />
@@ -81,6 +80,35 @@ class ActivityEntry extends React.Component {
       </form>
     </div>
   }
+
+  // Form changed events
+  private TitleChanged (ev: React.ChangeEvent<HTMLInputElement>) { 
+    this.setState({ Title: ev.target.value }) 
+  }
+
+  private StartTimeChanged (ev: React.ChangeEvent<HTMLInputElement>) { 
+    this.setState({ StartTime: ev.target.value }) 
+  }
+
+  private EndTimeChanged (ev: React.ChangeEvent<HTMLInputElement>) { 
+    this.setState({ EndTime: ev.target.value }) 
+  }
+
+  private DescriptionChanged (ev: React.ChangeEvent<HTMLTextAreaElement>) { 
+    this.setState({ Description: ev.target.value }) 
+  }
+  // --
+
+  private handleSubmit (ev: React.SyntheticEvent) {
+    this.props.SubmitActivity(this.state)
+    ev.preventDefault()
+  }
+
+  private handleAbort (ev: React.SyntheticEvent) {
+    this.props.Abort()
+    ev.preventDefault()
+  }
 }
 
 export default ActivityEntry
+export { IActivity }
