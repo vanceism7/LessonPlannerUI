@@ -67,23 +67,13 @@ class ScheduleController extends React.Component<IProps,IState> {
 
   private GoToActivityEntry () {
     const ev = this.state.ActivityClicked as IActivityInfo
-    const obj = {
+    const to = {
       pathname: '/ActivityEntry',
       ...ev
     }
 
-    return <Redirect push to={obj} />
-    // return <Redirect push to={{
-    //   pathname: '/ActivityEntry',
-    //   id: ev.id
-    // }} />
-    //   id: this.tate.ActivityClicked.id,
-    //   StartTime: this.state.ActivityClicked.StartTime,
-    //   EndTime: this.state.ActivityClicked.EndTime
-    // }} />
+    return <Redirect push to={to} />
   }
-
-  
 }
 
 export default ScheduleController
