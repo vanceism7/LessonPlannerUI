@@ -104,4 +104,3 @@ class ActivityEntry extends React.Component<IProps,IActivityItem> {
 }
 
 export default ActivityEntry
-export { IActivityItem }

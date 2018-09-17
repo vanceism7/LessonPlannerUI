@@ -1,8 +1,6 @@
 // Activity Loader
 // Used to fetch activity info
-
-import { IScheduleActivity } from '../UI/Schedule'
-import { IDb } from '../UI/ActivityController'
+import { IDb, IScheduleActivity  } from '../types'
 
 const activities: IScheduleActivity[] = // []
   [

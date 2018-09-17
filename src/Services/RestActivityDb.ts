@@ -1,8 +1,6 @@
 // Activity Loader
 // Used to fetch activity info
-
-import { IScheduleActivity } from '../UI/Schedule'
-import { IDb } from '../UI/ActivityController'
+import { IDb, IScheduleActivity  } from '../types'
 
 class RestActivityDb implements IDb {
 
@@ -42,6 +40,7 @@ class RestActivityDb implements IDb {
 
   public Update (id: number, activity: IScheduleActivity) {
     const i = this.GetActivities().map(x => x.id).indexOf(id)
+    console.log(i)
     // ajax put here
 
     // this.activities[i] = activity

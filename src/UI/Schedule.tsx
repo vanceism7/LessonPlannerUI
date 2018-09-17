@@ -66,4 +66,3 @@ class Schedule extends React.Component<IScheduleProps,{}> {
 }
 
 export default Schedule
-export { IScheduleActivity }

@@ -1,5 +1,6 @@
 import * as React from 'react'
-import Schedule, {IScheduleActivity} from './Schedule'
+import Schedule from './Schedule'
+import { IScheduleActivity } from "../types";
 import { Redirect } from 'react-router-dom'
 
 // Converts Mouse Y coordinate into time marking

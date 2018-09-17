@@ -1,7 +1,7 @@
 import * as React from 'react'
 import {Redirect} from 'react-router-dom'
-import ActivityEntry, {IActivityItem} from './ActvitiyEntry'
-import { IDb } from '../types';
+import ActivityEntry from './ActvitiyEntry'
+import { IDb, IActivityItem } from '../types';
 
 interface IProps {
   Db: IDb 
@@ -65,4 +65,3 @@ class ActivityController extends React.Component<IProps,any> {
 }
 
 export default ActivityController
-export { IDb }
