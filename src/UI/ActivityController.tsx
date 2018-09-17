@@ -1,13 +1,7 @@
 import * as React from 'react'
 import {Redirect} from 'react-router-dom'
-import ActivityEntry, {IActivity} from './ActvitiyEntry'
-// import {Activity} from './Schedule'
-
-interface IDb {
-  Find: (id: number | null) => IActivity
-  Add: (a: IActivity) => void
-  Update: (id: number, a: IActivity) => void
-}
+import ActivityEntry, {IActivityItem} from './ActvitiyEntry'
+import { IDb } from '../types';
 
 interface IProps {
   Db: IDb 
@@ -32,8 +26,6 @@ class ActivityController extends React.Component<IProps,any> {
     let event = this.UpdateActivity
     let activity = this.props.Db.Find(this.props.location.id)
 
-    console.log(activity)
-
     if (activity == null) {
       event = this.AddActivity
       activity = this.NewActivity()
@@ -46,11 +38,11 @@ class ActivityController extends React.Component<IProps,any> {
     />
   }
 
-  private AddActivity (a: IActivity) {
+  private AddActivity (a: IActivityItem) {
     this.props.Db.Add(a)
     this.Close()
   }
-  private UpdateActivity (a: IActivity) {
+  private UpdateActivity (a: IActivityItem) {
     if( a.id === null ) { throw new Error('ID is null, can\'t update activity') }
 
     this.props.Db.Update(a.id, a)

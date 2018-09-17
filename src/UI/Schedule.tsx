@@ -1,14 +1,7 @@
 import * as React from 'react'
 import ActivityItem from './ActivityItem'
 import '../Styles/Components/schedule.css'
-
-interface IActivity {
-  id: number,
-  Title: string,
-  Description: string,
-  StartTime: string,
-  EndTime: string
-}
+import { IScheduleActivity } from '../types';
 
 // Quick component for creating divs with TimeSlot class in first col of grid
 const TimeHeader = (props: { position: number, time: string } ) => {
@@ -20,7 +13,7 @@ const TimeHeader = (props: { position: number, time: string } ) => {
 }
 
 interface IScheduleProps {
-  Activities: IActivity[]
+  Activities: IScheduleActivity[]
   TimeIncrement: number
   ItemClicked: (e: React.SyntheticEvent, id: number) => void
   ContainerClicked: (e: React.MouseEvent) => void
@@ -42,7 +35,7 @@ class Schedule extends React.Component<IScheduleProps,{}> {
     </div>
   }
 
-  private createActivity (Activity: IActivity ) {
+  private createActivity (Activity: IScheduleActivity ) {
     const ClickFunc = (e: React.SyntheticEvent) => 
       this.props.ItemClicked(e, Activity.id)
 
@@ -73,4 +66,4 @@ class Schedule extends React.Component<IScheduleProps,{}> {
 }
 
 export default Schedule
-export { IActivity }
+export { IScheduleActivity }

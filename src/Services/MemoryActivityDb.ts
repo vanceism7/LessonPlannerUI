@@ -1,9 +1,10 @@
 // Activity Loader
 // Used to fetch activity info
 
-import { IActivity } from '../UI/Schedule'
+import { IScheduleActivity } from '../UI/Schedule'
+import { IDb } from '../UI/ActivityController'
 
-const activities: IActivity[] = // []
+const activities: IScheduleActivity[] = // []
   [
     { id: 0, Title: 'Math Time', StartTime: '8:20', EndTime: '10:00', Description: '' },
     { id: 1, Title: 'Reading Time', StartTime: '10:00', EndTime: '11:30', Description: '' },
@@ -13,11 +14,15 @@ const activities: IActivity[] = // []
     { id: 5, Title: 'Math Continued', StartTime: '12:00', EndTime: '13:00', Description: '' }
   ]
 
-class ActivityDb {
+class MemoryActivityDb implements IDb {
   constructor () {
     this.Find = this.Find.bind(this)
     this.Add = this.Add.bind(this)
     this.Update = this.Update.bind(this)
+  }
+
+  public GetActivities() {
+    return activities
   }
 
   public Find (id: number | null) {
@@ -25,7 +30,7 @@ class ActivityDb {
     return result
   }
 
-  public Add (activity: IActivity) {
+  public Add (activity: IScheduleActivity) {
     const getNewID = () => 
       Math.max(...activities.map(x => x.id)) + 1
 
@@ -33,11 +38,10 @@ class ActivityDb {
     activities.push(activity)
   }
 
-  public Update (id: number, activity: IActivity) {
+  public Update (id: number, activity: IScheduleActivity) {
     const i = activities.map(x => x.id).indexOf(id)
     activities[i] = activity
   }
 }
 
-export default { ActivityDb, activities }
-// export { activities }
+export default MemoryActivityDb

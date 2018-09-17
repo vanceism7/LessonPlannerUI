@@ -1,21 +1,14 @@
 import * as React from 'react'
 import '../Styles/Components/ActivityEntry.css'
-
-interface IActivity {
-  id: number | null
-  Title: string
-  StartTime: string
-  EndTime: string
-  Description: string
-}
+import { IActivityItem } from '../types';
 
 interface IProps {
-  Activity: IActivity
-  SubmitActivity: (a: IActivity) => void
+  Activity: IActivityItem
+  SubmitActivity: (a: IActivityItem) => void
   Abort: () => void
 }
 
-class ActivityEntry extends React.Component<IProps,IActivity> {
+class ActivityEntry extends React.Component<IProps,IActivityItem> {
   constructor (props: IProps) {
     super(props)
 
@@ -111,4 +104,4 @@ class ActivityEntry extends React.Component<IProps,IActivity> {
 }
 
 export default ActivityEntry
-export { IActivity }
+export { IActivityItem }

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Schedule, {IActivity} from './Schedule'
+import Schedule, {IScheduleActivity} from './Schedule'
 import { Redirect } from 'react-router-dom'
 
 // Converts Mouse Y coordinate into time marking
@@ -22,7 +22,7 @@ interface IState {
 }
 
 interface IProps {
-  Activities: IActivity[]
+  Activities: IScheduleActivity[]
 }
 
 class ScheduleController extends React.Component<IProps,IState> {
